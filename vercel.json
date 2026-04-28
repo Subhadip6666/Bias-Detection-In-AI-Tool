@@ -2,6 +2,5 @@
   "version": 2,
   "public": true,
   "cleanUrls": true,
-  "framework": "nextjs",
-  "rootDirectory": "frontend"
+  "framework": "nextjs"
 }
