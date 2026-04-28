@@ -1,57 +1,102 @@
-# AI Bias Detection and Fairness Correction System
+# ⚖️ BiasFix AI | Ethical AI Governance Platform
 
-A professional-grade platform for auditing machine learning models for bias and applying fairness corrections.
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
+![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)
+![Next.js 14](https://img.shields.io/badge/Next.js-14-black.svg)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.111.0-009688.svg)
 
-## Features
+A professional-grade platform for auditing machine learning models for bias, applying fairness corrections, and generating actionable ethical AI insights.
 
-- **Bias Detection**: Analyzes 5 key metrics (Demographic Parity, Equalized Odds, Disparate Impact, etc.).
-- **Bias Mitigation**: Support for pre-processing, in-processing (Exponentiated Gradient), and post-processing (Threshold Optimization) techniques.
-- **AI Insights**: Integration with Google Gemini for natural language explanations of bias and mitigation strategies.
-- **PDF Reporting**: Automated generation of fairness audit reports.
-- **Modern UI**: Dark-themed glassmorphism dashboard built with Next.js 14.
+## 🌟 Key Features
 
-## Tech Stack
+- **Advanced Bias Detection**: Analyzes 5 key fairness metrics simultaneously:
+  - Demographic Parity
+  - Equalized Odds
+  - Disparate Impact
+  - Equal Opportunity
+  - Predictive Parity
+- **Automated Bias Mitigation**: Built-in support for pre-processing, in-processing (Exponentiated Gradient), and post-processing (Threshold Optimization) techniques to actively fix biased models.
+- **Fairness-Accuracy Tradeoff Analysis**: Dynamic "Before vs. After" comparison dashboard that calculates exactly how much predictive utility is sacrificed to achieve mathematical fairness.
+- **AI-Powered Insights**: Deep integration with Google's Gemini models to provide natural language, human-readable explanations of complex bias metrics and mitigation strategies.
+- **Enterprise Reporting**: Automated generation of comprehensive, exportable PDF fairness audit reports for compliance and stakeholders.
+- **Premium Interface**: A modern, dark-themed glassmorphism dashboard built with Next.js 14 for an exceptional user experience.
 
-- **Backend**: FastAPI, scikit-learn, Fairlearn, pandas, google-generativeai, fpdf2.
-- **Frontend**: Next.js 14, React 18, Tailwind CSS, Axios, Framer Motion.
+## 🛠️ Tech Stack
 
-## Setup Instructions
+- **Backend**: Python, FastAPI, scikit-learn, Fairlearn, pandas, google-generativeai, fpdf2
+- **Frontend**: Next.js 14, React 18, Tailwind CSS, Recharts, Framer Motion, Axios
 
-### Backend
+## 🚀 Getting Started
 
-1. Navigate to the `backend` directory.
-2. Create a virtual environment: `python -m venv venv`.
-3. Activate the virtual environment.
-4. Install dependencies: `pip install -r requirements.txt`.
-5. Set your `GOOGLE_API_KEY` in the `.env` file.
-6. Run the server: `python main.py`.
+### Backend Setup
 
-### Frontend
+1. Navigate to the `backend` directory:
+   ```bash
+   cd backend
+   ```
+2. Create and activate a virtual environment:
+   ```bash
+   python -m venv venv
+   # Windows: venv\Scripts\activate
+   # Linux/Mac: source venv/bin/activate
+   ```
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Set your Google Gemini API key:
+   Create a `.env` file in the `backend` directory and add:
+   ```env
+   GOOGLE_API_KEY=your_api_key_here
+   ```
+5. Run the server:
+   ```bash
+   python main.py
+   ```
+   *The API will run on `http://localhost:10000`*
 
-1. Navigate to the `frontend` directory.
-2. Install dependencies: `npm install`.
-3. Set `NEXT_PUBLIC_API_URL` in `.env.local` (default is http://localhost:10000).
-4. Run the development server: `npm run dev`.
+### Frontend Setup
 
-## Project Structure
+1. Navigate to the `frontend` directory:
+   ```bash
+   cd frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Configure environment variables:
+   Create a `.env.local` file (optional, defaults to localhost):
+   ```env
+   NEXT_PUBLIC_API_URL=http://localhost:10000
+   ```
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
+   *The UI will be accessible at `http://localhost:3000`*
+
+## 📁 Project Structure
 
 ```text
-bias-detection-tool/
-├── frontend/          # Next.js Application
-│   ├── components/    # UI Components
-│   ├── pages/         # Page Routes
-│   └── utils/         # API & Helpers
-└── backend/           # FastAPI Application
-    ├── api/           # API Routes
-    ├── bias/          # Fairness Logic
-    ├── data/          # Data Loading & Preprocessing
-    ├── gemini/        # Gemini Integration
-    ├── model/         # Training & Evaluation
-    └── report/        # PDF Generation
+Bias-Detection-In-AI-Tool/
+├── frontend/          # Next.js Application & React Components
+│   ├── components/    # Reusable UI elements (Charts, Uploaders)
+│   ├── pages/         # Application routes (Dashboard, Compare, Report)
+│   └── styles/        # Global CSS and Tailwind configurations
+└── backend/           # FastAPI Application & ML Engine
+    ├── bias/          # Core fairness detection & mitigation logic (Fairlearn)
+    ├── data/          # Dataset loading & preprocessing pipelines
+    ├── gemini/        # Google Gemini AI integration
+    ├── model/         # Model training & evaluation (scikit-learn)
+    └── report/        # Automated PDF generation
 ```
 
-## Demo Data
+## 📊 Demo Data
 
-The system is optimized for the **COMPAS** dataset. You can load it directly via the UI or upload your own CSV.
-- **Target**: `two_year_recid`
-- **Protected Attribute**: `race` or `sex`
+The system includes a pre-configured sample of the **COMPAS** dataset to test the workflow immediately. You can load it directly via the UI or upload your own CSV.
+- **Target Variable**: `two_year_recid`
+- **Protected Attributes**: `race` or `sex`
+
+## 🤝 Contributing
+Contributions are welcome! Please feel free to submit a Pull Request.
