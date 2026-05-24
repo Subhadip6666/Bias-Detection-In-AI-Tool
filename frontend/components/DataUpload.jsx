@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Upload, File, CheckCircle2, Loader2, Database } from 'lucide-react';
 import { uploadDataset, loadDemoDataset } from '../utils/api';
+import SkeletonLoader from './SkeletonLoader';
 
 export default function DataUpload({ onUploadSuccess }) {
   const [isDragging, setIsDragging] = useState(false);
@@ -35,6 +36,18 @@ export default function DataUpload({ onUploadSuccess }) {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="max-w-2xl mx-auto space-y-4">
+        <div className="flex items-center space-x-3 justify-center mb-2">
+          <Loader2 className="animate-spin text-indigo-400" size={24} />
+          <span className="text-indigo-300 font-medium text-sm">Processing & parsing CSV data...</span>
+        </div>
+        <SkeletonLoader variant="table" />
+      </div>
+    );
+  }
+
   return (
     <div className="glass rounded-3xl p-8 max-w-2xl mx-auto border-dashed border-2 border-white/10">
       <div className="text-center mb-8">
@@ -62,12 +75,7 @@ export default function DataUpload({ onUploadSuccess }) {
           onChange={(e) => handleFile(e.target.files[0])}
         />
         
-        {loading ? (
-          <div className="flex flex-col items-center">
-            <Loader2 className="animate-spin text-indigo-400 mb-4" size={48} />
-            <p className="text-indigo-400 font-medium">Processing Dataset...</p>
-          </div>
-        ) : file ? (
+        {file ? (
           <div className="flex flex-col items-center">
             <CheckCircle2 className="text-green-400 mb-4" size={48} />
             <p className="text-green-400 font-medium">{file.name}</p>
@@ -91,9 +99,10 @@ export default function DataUpload({ onUploadSuccess }) {
           disabled={loading}
           className="text-xs font-semibold text-indigo-400 hover:text-indigo-300 underline disabled:opacity-50"
         >
-          {loading ? 'Loading...' : 'Use Demo Data'}
+          Use Demo Data
         </button>
       </div>
     </div>
   );
 }
+

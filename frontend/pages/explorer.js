@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Loader2 } from 'lucide-react';
 import { getDatasetRows } from '../utils/api';
+import SkeletonLoader from '../components/SkeletonLoader';
 
 export default function DatasetExplorerPage() {
   const [rows, setRows] = useState([]);
@@ -82,7 +83,7 @@ export default function DatasetExplorerPage() {
             {/* Table */}
             <div className="glass rounded-2xl overflow-hidden">
               {loading ? (
-                <div className="flex items-center justify-center py-20"><Loader2 className="animate-spin text-indigo-400" size={32} /></div>
+                <SkeletonLoader variant="table" />
               ) : (
                 <div className="overflow-x-auto max-h-[600px] overflow-y-auto">
                   <table className="w-full text-sm">

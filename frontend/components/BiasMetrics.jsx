@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Activity, ShieldAlert, Loader2, ArrowRight, Info } from 'lucide-react';
 import { analyzeBias } from '../utils/api';
+import SkeletonLoader from './SkeletonLoader';
 
 export default function BiasMetrics({ datasetId, modelId, columns, onAnalysisSuccess }) {
   const [protectedAttr, setProtectedAttr] = useState('');
@@ -19,6 +20,18 @@ export default function BiasMetrics({ datasetId, modelId, columns, onAnalysisSuc
       setLoading(false);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="max-w-7xl mx-auto space-y-4">
+        <div className="flex items-center space-x-3 justify-center mb-2">
+          <Loader2 className="animate-spin text-indigo-400" size={24} />
+          <span className="text-indigo-300 font-medium text-sm">Evaluating fairness metrics & prompting Gemini AI...</span>
+        </div>
+        <SkeletonLoader variant="bias" />
+      </div>
+    );
+  }
 
   return (
     <div className="glass rounded-3xl p-8 max-w-4xl mx-auto">
@@ -71,19 +84,13 @@ export default function BiasMetrics({ datasetId, modelId, columns, onAnalysisSuc
           disabled={loading || !protectedAttr}
           className="btn-primary flex items-center space-x-2"
         >
-          {loading ? (
-            <>
-              <Loader2 className="animate-spin" size={20} />
-              <span>Analyzing Fairness...</span>
-            </>
-          ) : (
-            <>
-              <span>Run Bias Analysis</span>
-              <ArrowRight size={18} />
-            </>
-          )}
+          <>
+            <span>Run Bias Analysis</span>
+            <ArrowRight size={18} />
+          </>
         </button>
       </div>
     </div>
   );
 }
+

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Database, Zap, Loader2, ArrowRight } from 'lucide-react';
 import { trainModel } from '../utils/api';
+import SkeletonLoader from './SkeletonLoader';
 
 export default function ModelTraining({ datasetId, columns, onTrainingSuccess }) {
   const [modelType, setModelType] = useState('logistic_regression');
@@ -20,6 +21,18 @@ export default function ModelTraining({ datasetId, columns, onTrainingSuccess })
       setLoading(false);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="max-w-4xl mx-auto space-y-4">
+        <div className="flex items-center space-x-3 justify-center mb-2">
+          <Loader2 className="animate-spin text-indigo-400" size={24} />
+          <span className="text-indigo-300 font-medium text-sm">Fitting machine learning model on CPU...</span>
+        </div>
+        <SkeletonLoader variant="training" />
+      </div>
+    );
+  }
 
   return (
     <div className="glass rounded-3xl p-8 max-w-4xl mx-auto">
@@ -80,20 +93,14 @@ export default function ModelTraining({ datasetId, columns, onTrainingSuccess })
           disabled={loading || !targetCol}
           className="btn-primary flex items-center space-x-2"
         >
-          {loading ? (
-            <>
-              <Loader2 className="animate-spin" size={20} />
-              <span>Training Model...</span>
-            </>
-          ) : (
-            <>
-              <Zap size={20} />
-              <span>Initiate Training</span>
-              <ArrowRight size={18} />
-            </>
-          )}
+          <>
+            <Zap size={20} />
+            <span>Initiate Training</span>
+            <ArrowRight size={18} />
+          </>
         </button>
       </div>
     </div>
   );
 }
+

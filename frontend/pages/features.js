@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { ArrowLeft, Loader2 } from 'lucide-react';
 import { getFeatureImportance } from '../utils/api';
+import SkeletonLoader from '../components/SkeletonLoader';
 
 export default function FeatureImportancePage() {
   const [data, setData] = useState(null);
@@ -55,9 +56,7 @@ export default function FeatureImportancePage() {
         <div className="glass rounded-2xl p-6">
           <h3 className="text-[0.65rem] text-gray-500 uppercase tracking-widest font-bold mb-4">Feature Coefficients (Absolute)</h3>
           {loading ? (
-            <div className="flex items-center justify-center py-20">
-              <Loader2 className="animate-spin text-indigo-400" size={32} />
-            </div>
+            <SkeletonLoader variant="general" count={4} />
           ) : data ? (
             <ResponsiveContainer width="100%" height={Math.max(300, data.length * 50)}>
               <BarChart data={data} layout="vertical" margin={{ left: 20, right: 40 }}>

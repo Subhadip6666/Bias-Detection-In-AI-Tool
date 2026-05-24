@@ -1,12 +1,14 @@
-fastapi==0.109.0
-uvicorn==0.27.0
-scikit-learn==1.4.0
-fairlearn==0.10.0
-pandas==2.2.0
-google-generativeai==0.3.2
-fpdf2==2.7.7
-plotly==5.18.0
-python-dotenv==1.0.0
-python-multipart==0.0.6
-aiofiles==23.2.1
-requests==2.31.0
+fastapi>=0.109.0
+uvicorn>=0.27.0
+numpy==2.4.6
+scipy==1.17.1
+scikit-learn==1.8.0
+# fairlearn is pre-installed manually with --no-deps to bypass a scipy<1.16.0 constraint on Python 3.14
+pandas==3.0.3
+google-generativeai>=0.3.2
+fpdf2>=2.7.7
+plotly>=5.18.0
+python-dotenv>=1.0.0
+python-multipart>=0.0.6
+aiofiles>=23.2.1
+requests>=2.31.0
